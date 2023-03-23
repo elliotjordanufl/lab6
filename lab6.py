@@ -14,8 +14,12 @@ def encode(to_encode):
     return encoded_password
 
 
-def decode(to_decode):
-    pass
+def decode_password(encoded_password):
+    password = ""
+    for digit in encoded_password:
+        shifted_digit = str((int(digit) - 3) % 10)  # shift each digit down by 3 numbers
+        password += shifted_digit
+    return password
 
 
 def main():
@@ -32,7 +36,11 @@ def main():
         encoded_password = encode(to_encode)
        # print(encoded_password)
     elif user_choice == 2:
-        pass
+        if not encoded_password:
+            print("Please encode a password first.")
+        else:
+            print(f"The encoded password is {encoded_password},"
+                  f"and the original password is {decode_password(encoded_password)}.")
     elif user_choice == 3:
         quit()
 
